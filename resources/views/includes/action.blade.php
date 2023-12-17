@@ -1,3 +1,6 @@
+@section('title')
+Action
+@endsection
 <!-- Call To Action Start -->
 <div class="container-xxl py-5">
             <div class="container">
@@ -22,4 +25,3 @@
             </div>
         </div>
         <!-- Call To Action End -->
-

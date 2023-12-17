@@ -1,3 +1,6 @@
+@section('title')
+Classes
+@endsection
 <!-- Classes Start -->
 <div class="container-xxl py-5">
             <div class="container">
