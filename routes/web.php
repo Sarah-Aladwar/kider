@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KidController;
+use App\Http\Controllers\ClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +41,7 @@ Route::get('action',[KidController::class, 'action'])->name('action');
 Route::get('appointment',[KidController::class, 'appointment'])->name('appointment');
 
 Route::fallback([KidController::class, 'error404']);
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
