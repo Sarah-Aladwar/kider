@@ -45,3 +45,18 @@ Route::fallback([KidController::class, 'error404']);
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*Route::controller(ClientController::class)->middleware('verified')->group(function(){
+    Route::get('addtestimonial', 'create');
+    Route::post('addtestimony', 'store')->name('displaytestimony');
+});   */
+
+
+//http://127.0.0.1:8001/admin/addtestimonial
+Route::prefix('admin')->controller(ClientController::class)->group(function(){
+    Route::get('addtestimonial', 'create');
+    Route::post('addtestimony', 'store')->name('displaytestimony');
+    //Route::get('testimonylist', 'index');
+})->middleware('verified');
+
+Route::get('testimonialpage',[ClientController::class, 'show']);
