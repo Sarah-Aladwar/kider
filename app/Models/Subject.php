@@ -22,9 +22,8 @@ class Subject extends Model
         'image',
     ];
 
-    public function teacher() {
-
+    public function teacher()
+    {
       return $this->belongsTo(Teacher::class);
-
     }
 }

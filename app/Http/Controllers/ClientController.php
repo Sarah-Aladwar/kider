@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Trait\Common;
-
-
-
+use Illuminate\Http\RedirectResponse;
 
 class ClientController extends Controller
 {
@@ -19,7 +17,7 @@ class ClientController extends Controller
     public function index()
     {
         $testimony = Client::get();
-        return view('testimonial', compact('testimony'));
+        return view('testimoniallist', compact('testimony'));
     }
 
     /**
@@ -54,7 +52,7 @@ class ClientController extends Controller
 
         $testimony->save();
 
-        //return redirect('cars');
+        return redirect('admin/testmoniallist');
     }
 
     //custom error messages
@@ -67,18 +65,19 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+   /* public function show()
     {
         $testimony = Client::latest()->take(4)->get();
         return view('testimonial', compact('testimony'));
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $testimony = Client::findOrFail($id);
+        return view('updatetestimony', compact('testimony'));
     }
 
     /**
@@ -86,14 +85,50 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = $this->messages();
+
+        $data = $request->validate([
+            'name' => 'required|string',
+            'profession' => 'required|string',
+            'testimony' => 'required|string',
+            'image' => 'sometimes|required|mimes:png,jpg,jpeg|max:2048',
+            ], $messages); 
+     
+            //update image if new file is selected
+            if($request->hasFile('image')){
+             $filename = $this->uploadfile($request->image, 'assets/images');
+             $data['image'] = $filename;
+            }
+               
+            Client::where('id', $id)->update($data);   
+     
+            return redirect('admin/testimoniallist');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        Client::where('id', $id)->delete();
+        return redirect('admin/testimoniallist');
+    }
+
+    public function trashed()
+    {
+        $testimony = Client::onlyTrashed()->get();
+        return view('trashedtestimony', compact('testimony'));
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        Client::where('id', $id)->restore();
+        return redirect('admin/testimoniallist');
+    }
+
+    public function fdtestimony(string $id): RedirectResponse
+    {
+        Client::where('id', $id)->forceDelete();
+        return redirect('admin/trashedtestimony');
     }
 }

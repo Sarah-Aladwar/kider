@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Client;
+use App\Models\Subject;
+use App\Models\Teacher;
+
+
 
 class KidController extends Controller
 {
@@ -11,7 +16,9 @@ class KidController extends Controller
      */
     public function index()
     {
-        return view('kider');
+        $testimony = Client::get();
+        return view('kider', compact('testimony'));
+        //return view('kider');
     }
 
     /**
@@ -30,7 +37,9 @@ class KidController extends Controller
 
     public function classes()
     {
-        return view('classes');
+        $sub = Subject::latest()->take(6)->get();
+        return view('classes', compact('sub'));
+        //return view('classes');
     }
 
     public function contact()
@@ -40,7 +49,9 @@ class KidController extends Controller
 
     public function testimonial()
     {
-        return view('testimonial');
+        $testimony = Client::get();
+        return view('testimonial', compact('testimony'));
+        //return view('testimonial');
     }
 
     public function facilities()

@@ -10,7 +10,7 @@
                 <div class="testimonial-item bg-light rounded p-5">
                         <p class="fs-5">{{ $t->testimony }}</p>
                         <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('assets/img/.$t->image') }}" style="width: 90px; height: 90px;">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('assets/images/'.$t->image) }}" style="width: 90px; height: 90px;">
                             <div class="ps-3">
                                 <h3 class="mb-1">{{ $t->name }}</h3>
                                 <span>{{ $t->profession }}</span>

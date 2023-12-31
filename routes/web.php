@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KidController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SubjectController;
 
 
 /*
@@ -56,7 +57,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->controller(ClientController::class)->group(function(){
     Route::get('addtestimonial', 'create');
     Route::post('addtestimony', 'store')->name('displaytestimony');
-    //Route::get('testimonylist', 'index');
+    Route::get('testimoniallist', 'index');
+    Route::get('deletetestimony/{id}', 'destroy');
+    Route::get('trashedtestimony','trashed');
+    Route::get('restoretestimony/{id}', 'restore');
+    Route::get('fdtestimony/{id}', 'fdtestimony');
+    Route::get('edittestimony/{id}', 'edit');
+    Route::put('updatetestimony/{id}', 'update')->name('updateTestimonial');
 })->middleware('verified');
 
-Route::get('testimonialpage',[ClientController::class, 'show']);
+//Route::get('testimonialpage',[ClientController::class, 'show']);
+
+
+Route::prefix('admin')->controller(SubjectController::class)->group(function(){
+    Route::get('addsubject', 'create');
+    Route::post('subjectentry', 'store')->name('displaysubject');
+})->middleware('verified');
+
+//Route::get('subjectpage',[SubjectController::class, 'show']);
+
