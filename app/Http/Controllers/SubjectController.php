@@ -68,7 +68,7 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      */
-   /* public function show(string $id)
+   /* public function show()
     {
         $sub = Subject::latest()->take(6)->get();
         return view('classes', compact('sub'));

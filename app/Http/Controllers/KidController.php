@@ -17,7 +17,8 @@ class KidController extends Controller
     public function index()
     {
         $testimony = Client::get();
-        return view('kider', compact('testimony'));
+        $sub = Subject::latest()->take(6)->get();
+        return view('kider', compact('testimony', 'sub'));
         //return view('kider');
     }
 
