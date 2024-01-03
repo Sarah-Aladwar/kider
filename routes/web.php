@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KidController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 
 
 /*
@@ -72,7 +73,27 @@ Route::prefix('admin')->controller(ClientController::class)->group(function(){
 Route::prefix('admin')->controller(SubjectController::class)->group(function(){
     Route::get('addsubject', 'create');
     Route::post('subjectentry', 'store')->name('displaysubject');
+    Route::get('subjectlist', 'index');
+    Route::get('editsubject/{id}', 'edit');
+    Route::put('updatesubject/{id}', 'update')->name('updatesubject');
+    Route::get('deletesubject/{id}', 'destroy');
+    Route::get('trashedsubject','trashed');
+    Route::get('restoresubject/{id}', 'restore');
+    Route::get('fdsubject/{id}', 'fdsubject');
 })->middleware('verified');
 
 //Route::get('subjectpage',[SubjectController::class, 'show']);
 
+Route::prefix('admin')->controller(TeacherController::class)->group(function(){
+    Route::get('addteacher', 'create');
+    Route::post('teacherentry', 'store')->name('teacher');
+    Route::get('teacherlist', 'index');
+    Route::get('editteacher/{id}', 'edit');
+    Route::put('updateteacher/{id}', 'update')->name('updateteacher');
+    Route::get('deleteteacher/{id}', 'destroy');
+    Route::get('trashedteacher','trashed');
+    Route::get('restoreteacher/{id}', 'restore');
+    Route::get('fdteacher/{id}', 'fdteacher');
+})->middleware('verified');
+
+//Route::get('')

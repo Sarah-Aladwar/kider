@@ -17,8 +17,10 @@ class KidController extends Controller
     public function index()
     {
         $testimony = Client::get();
-        $sub = Subject::latest()->take(6)->get();
-        return view('kider', compact('testimony', 'sub'));
+        //$sub = Subject::latest()->take(6)->get();
+        $sub = Subject::all();
+        $teachers = Teacher::latest()->take(3)->get();
+        return view('kider', compact('testimony', 'sub', 'teachers'));
         //return view('kider');
     }
 
@@ -62,7 +64,8 @@ class KidController extends Controller
 
     public function team()
     {
-        return view('team');
+        $teachers = Teacher::latest()->take(3)->get();
+        return view('team', compact('teachers'));
     }
 
     public function action()

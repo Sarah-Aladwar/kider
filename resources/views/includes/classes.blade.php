@@ -19,10 +19,10 @@ Classes
                                 <a class="d-block text-center h3 mt-3 mb-4" href="">{{ $s->class_subject }}</a>
                                 <div class="d-flex align-items-center justify-content-between mb-4">
                                     <div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('assets/images/'.$s->teacher->image) }}" alt="" style="width: 45px; height: 45px;">
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('assets/images/'.$s->teacher['image']) }}" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
                                             <h6 class="text-primary mb-1">Teacher</h6>
-                                            <small>{{ $s->teacher->name }}</small>
+                                            <small> {{ $s->teacher['name'] }} </small>
                                         </div>
                                     </div>
                                     <span class="bg-primary text-white rounded-pill py-2 px-3" href="">${{$s->price}}</span>

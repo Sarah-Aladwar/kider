@@ -16,7 +16,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subject = Subject::get();
+        return view('subjectlist', compact('subject'));
     }
 
     /**
@@ -40,8 +41,8 @@ class SubjectController extends Controller
             'class_subject' => 'required|string',
             'min_age' => 'required|decimal:0,2',
             'max_age' => 'required|decimal:0,2',
-            'start_time' => 'required|decimal:0,2',
-            'end_time' => 'required|decimal:0,2',
+            'start_time' => 'required',
+            'end_time' => 'required',
             'price' => 'required|decimal:0,2',
             'capacity' => 'required|decimal:0,2',
             'teacher_id' => 'required',
@@ -79,7 +80,9 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $teacher = Teacher::get();
+        return view('updatesubject', compact('subject', 'teacher'));
     }
 
     /**
@@ -87,7 +90,29 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = $this->messages();
+
+        $data = $request->validate([
+            'class_subject' => 'required|string',
+            'min_age' => 'required|decimal:0,2',
+            'max_age' => 'required|decimal:0,2',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'price' => 'required|decimal:0,2',
+            'capacity' => 'required|decimal:0,2',
+            'teacher_id' => 'required',
+            'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+            ], $messages); 
+     
+            //update image if new file is selected
+            if($request->hasFile('image')){
+             $filename = $this->uploadfile($request->image, 'assets/images');
+             $data['image'] = $filename;
+            }
+               
+            Subject::where('id', $id)->update($data);   
+     
+            return redirect('admin/subjectlist');
     }
 
     /**
@@ -95,6 +120,25 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Subject::where('id', $id)->delete();
+        return redirect('admin/subjectlist');
+    }
+
+    public function trashed()
+    {
+        $subject = Subject::onlyTrashed()->get();
+        return view('trashedsubject', compact('subject'));
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        Subject::where('id', $id)->restore();
+        return redirect('admin/subjectlist');
+    }
+
+    public function fdsubject(string $id): RedirectResponse
+    {
+        Subject::where('id', $id)->forceDelete();
+        return redirect('admin/trashedsubject');
     }
 }
