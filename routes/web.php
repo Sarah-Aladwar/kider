@@ -95,5 +95,3 @@ Route::prefix('admin')->controller(TeacherController::class)->group(function(){
     Route::get('restoreteacher/{id}', 'restore');
     Route::get('fdteacher/{id}', 'fdteacher');
 })->middleware('verified');
-
-//Route::get('')

@@ -20,7 +20,7 @@ class ClientFactory extends Factory
             'name' => fake()->name(),
             'profession' => fake()->jobTitle(),
             'testimony' => fake()->text(),
-            'image' => fake()->imageUrl(800,600),
+            'image' => fake()->randomElement(['testimonial-1.jpg','testimonial-2.jpg','testimonial-3.jpg']),
         ];
     }
 }

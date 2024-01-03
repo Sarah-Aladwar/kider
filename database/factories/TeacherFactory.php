@@ -22,7 +22,7 @@ class TeacherFactory extends Factory
             'fb' => fake()->domainName(),
             'x' => fake()->domainName(),
             'insta' => fake()->domainName(),
-            'image' => fake()->imageUrl(800,600),
+            'image' => fake()->randomElement(['team-1.jpg','team-2.jpg','team-3.jpg']),
         ];
     }
 }

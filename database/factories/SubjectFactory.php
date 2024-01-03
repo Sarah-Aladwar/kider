@@ -28,7 +28,7 @@ class SubjectFactory extends Factory
             'price' =>fake()->numberBetween($min= 200, $max=2500),
             'capacity' =>fake()->numberBetween($min = 15, $max = 35),
             'teacher_id' => fake()->numberBetween($min = 1, $max = 10),
-            'image' => fake()->imageUrl(600,800),
+            'image' => fake()->randomElement(['classes-1.jpg','classes-2.jpg','classes-3.jpg','classes-4.jpg','classes-5.jpg','classes-6.jpg']),
         ];
     }
 }
