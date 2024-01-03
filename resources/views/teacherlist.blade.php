@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($teachers as $teacher)
+      @foreach($teacher as $teacher)
       <tr>
         <td>{{ $teacher->name }}
         <td>{{ $teacher->position }}</td>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Trashed Techer list</title>
+  <title>Trashed Teacher list</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,14 +11,12 @@
 <body>
 
 <div class="container">
-  <h2>Trashed Techer list</h2>
-  <p>The .table-hover class enables a hover state on table rows:</p>            
+  <h2>Trashed Teacher list</h2>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>title</th>
-        <th>content</th>
-        <th>position</th>
+        <th>Name</th>
+        <th>Position</th>
         <th>Facebook</th>
         <th>X</th>
         <th>Insta</th>
@@ -27,12 +25,11 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($teachers as  $teacher)
+      @foreach($teacher as  $teacher)
     <tr>
         <td>{{$teacher->name}}</td>
         <td>{{$teacher->position}}</td>
         <td>{{$teacher->fb}}</td>
-        <td>{{$teacher->x}}</td>
         <td>{{$teacher->x}}</td>
         <td>{{$teacher->insta}}</td>
         <td><a href="restoreteacher/{{ $teacher->id }}">Restore</a></td>

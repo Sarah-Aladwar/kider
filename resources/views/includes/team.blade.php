@@ -7,7 +7,7 @@
                         eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
                 </div>
                 <div class="row g-4">
-                    @foreach($teachers as $t)
+                    @foreach($teacher as $t)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item position-relative">
                             <img class="img-fluid rounded-circle w-75" src="{{ asset('assets/img/'.$t->image) }}" alt="">

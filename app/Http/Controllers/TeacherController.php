@@ -13,16 +13,16 @@ class TeacherController extends Controller
 
     public function teacher()
     {
-        $teachers = Teacher::latest()->take(3)->get();
-        return view('team', compact('teachers'));
+        $teacher = Teacher::latest()->take(3)->get();
+        return view('team', compact('teacher'));
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teachers = Teacher::get();
-        return view('teacherlist', compact('teachers'));
+        $teacher = Teacher::get();
+        return view('teacherlist', compact('teacher'));
     }
 
     /**
@@ -114,8 +114,8 @@ class TeacherController extends Controller
 
     public function trashed()
     {
-        $teachers = Teacher::onlyTrashed()->get();
-        return view('trashedteacher', compact('teachers'));
+        $teacher = Teacher::onlyTrashed()->get();
+        return view('trashedteacher', compact('teacher'));
     }
 
     public function restore(string $id): RedirectResponse
