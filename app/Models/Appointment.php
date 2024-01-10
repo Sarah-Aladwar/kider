@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Student extends Model
+class Appointment extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'student_name',
         'guardian_name',
-        'guardian_age',
+        'student_age',
         'guardian_mail',
         'message',
     ];

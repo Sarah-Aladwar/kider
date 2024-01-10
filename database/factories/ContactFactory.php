@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class StudentFactory extends Factory
+class ContactFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,9 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'student_name' => fake()->name(),
-            'guardian_name' => fake()->name(),
-            'student_age' => fake()->numberBetween($min= 4, $max=15),
-            'guardian_mail' => fake()->unique()->safeEmail(),
+            'name' => fake()->name(),
+            'subject' => fake()->name(),
+            'mail' => fake()->unique()->safeEmail(),
             'message' => fake()->text(),
         ];
     }

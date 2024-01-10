@@ -5,6 +5,8 @@ use App\Http\Controllers\KidController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ContactController;
 
 
 /*
@@ -95,3 +97,17 @@ Route::prefix('admin')->controller(TeacherController::class)->group(function(){
     Route::get('restoreteacher/{id}', 'restore');
     Route::get('fdteacher/{id}', 'fdteacher');
 })->middleware('verified');
+
+
+Route::post('submit', [AppointmentController::class, 'appointment'])->name('submit');
+
+Route::prefix('admin')->controller(AppointmentController::class)->group(function(){
+    Route::get('appointmentlist', 'index');
+    Route::get('showappointment/{id}', 'show');
+    Route::get('trashedappointment','trashed');
+    Route::get('restoreappointment/{id}', 'restore');
+    Route::get('deleteappointment/{id}', 'destroy');
+    Route::get('fdappointment/{id}', 'fdappointment');
+})->middleware('verified');
+
+Route::post('submit', [ContactController::class, 'contact'])->name('send');
